@@ -1,7 +1,6 @@
 import React from 'react'
 
-export const Book = (props) => {
-  const { img, title, auther } = props.book
+export const Book = ({ img, title, auther }) => {
   return (
     <article className='book'>
       <img src={img} alt='' />
