@@ -1,47 +1,61 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 
-// stateless functional component
-// always return JSX
+// CSS
+import './index.css'
 
-// function Greeting() {
-//   return <h4>Hello world!</h4>
-// }
+const firstBook = {
+  img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Question_book-new.svg/512px-Question_book-new.svg.png?20210726203554',
+  title: 'I Love You to the Moon and Back',
+  auther: 'Amelia Hepworth',
+}
+
+const secondBook = {
+  img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Question_book-new.svg/512px-Question_book-new.svg.png?20210726203554',
+  title: 'Our Class is a Family',
+  auther: 'Shannon Olsen',
+}
 
 function BookList() {
   return (
-    <section>
-      <Book />
+    <section className='booklist'>
+      <Book
+        img={firstBook.img}
+        title={firstBook.title}
+        auther={firstBook.auther}
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+          voluptates quis expedita accusamus cumque ratione iure rem magni
+          temporibus voluptatum!
+        </p>
+      </Book>
+      <Book
+        img={secondBook.img}
+        title={secondBook.title}
+        auther={secondBook.auther}
+      />
     </section>
   )
 }
 
-const Book = () => {
+// const Book = ({ img, title, auther, children }) => {
+const Book = (props) => {
+  console.log(props)
+  const { img, title, auther, children } = props
   return (
-    <article>
-      <Image />
-      <Title />
-      <Auther />
+    <article className='book'>
+      <img src={img} alt='' />
+      <h1>{title}</h1>
+      <h4>{auther}</h4>
+      {children}
     </article>
   )
 }
 
-const Image = () => {
-  return (
-    <img
-      src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Question_book-new.svg/512px-Question_book-new.svg.png?20210726203554'
-      alt=''
-      width='250px'
-    />
-  )
-}
-
-const Title = () => <h1>I Love You to the Moon and Back</h1>
-const Auther = () => <h4>Amelia Hepworth</h4>
-
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
   <React.StrictMode>
     <BookList />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )
